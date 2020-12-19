@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timed Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="./quizstyle.css">
+</head>
+
+<body>
+    <section class="row">
+        <div class="col-md-4">
+            <div class="wrapper">
+                <header>
+                    <h1>Timed Quiz</h1>
+                </header>
+                <div class="card">
+                    <h2 id="Timer">Timer</h2>
+                </div>
+                <div>
+                    <div class="card-body">
+                        <textarea readonly id="question" placeholder="Get ready"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-footer">
+                            <button id="ans1" class="btn">Answer</button>
+                            <br>
+                            <button id="ans2" class="btn">Answer</button>
+                            <br>
+                            <button id="ans3" class="btn">Answer</button>
+                            <br>
+                            <button id="start" class="btn">start</button>
+                        </div>
+                        <div class="card-footer">
+                            <p><strong>Initials:</strong> <span id="user-initials"></span></p>
+                            <p><strong>Score:</strong> <span id="user-score"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script rel="textjavascript" src="./quiz.js"></script>
+</body>
+
+</html>

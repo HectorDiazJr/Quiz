@@ -1,2 +1,2 @@
 # Quiz
-Homework assignment
+Creating a timed quiz
