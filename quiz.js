@@ -9,6 +9,7 @@ var scoreEl = document.getElementById("user-score");
 
 var score = 0;
 var secondsLeft = 20;
+var nextQuestion = 2
 
 //testing buttons are connected to js
 // timerEl.textContent = "this is a test";
@@ -19,11 +20,11 @@ var secondsLeft = 20;
 // startEl.textContent = "test";
 
 //create an object with questions and answers
-var intandscore = [
-    { int: "", score: "" },
-    { q: "was this homework is even harder?", a: "yes" },
-    { q: "What month are we in?", a: "December" }
-];
+// var intandscore = [
+//     { int: "", score: "" },
+//     { q: "was this homework is even harder?", a: "yes" },
+//     { q: "What month are we in?", a: "December" }
+// ];
 
 //function to update the timer
 function setCounterText() {
@@ -59,14 +60,25 @@ function startTimer() {
     question1();
 }
 
-
-
+//function to handle correct answer
+function correctans () {
+    score++;
+    alert("Correct" + " your score is " + score) + " out of 3";
+    if (nextQuestion === 2){
+    question2();
+    nextQuestion++;
+    }
+    else if (nextQuestion === 3) {
+        question3();
+    }
+}
 //function to handle incorrect guess
 function incorrectans() {
     secondsLeft--;
     setCounterText();
-    alert("incorrect. you loose 2 seconds")
+    alert("incorrect. you loose 2 seconds. Try again");
 }
+
 //create a function to go through the series of questions (for loop or series of functions calling eachother?)
 function question1() {
     if (secondsLeft > 0) {
@@ -76,57 +88,50 @@ function question1() {
         ans3El.textContent = "what is a newspaper?";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
 
-        ans2El.addEventListener("click", function () {
-            score++;
-            alert("Correct" + " your score is " + score) + " out of 3";
-        })
-        ans1El.addEventListener("click", incorrectans);
+        ans2El.addEventListener("click", correctans);
+        ans1El.addEventListener("click", incorrectans); 
         ans3El.addEventListener("click", incorrectans);
-        question2();
     }
 }
 
 function question2() {
+    ans1El.removeEventListener("click",incorrectans);
+    ans2El.removeEventListener("click",correctans);
+    ans3El.removeEventListener("click",incorrectans);
     if (secondsLeft > 0) {
         questionEl.textContent = "where should the css style sheet link be located?";
         ans1El.textContent = "in the head of the document";
         ans2El.textContent = "in the body";
         ans3El.textContent = "in the footer";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-        if (ans1El.eventlistener("click")) {
-            score++;
-            alert("Correct" + " your score is " + score);
-        }
-        else {
-            //NEED TO SUBTRACT 2 SECONDS
-            secondsLeft--;
-            setCounterText();
-            alert("incorrect. you loose 2 seconds")
-        }
-        question3();
-    }
-}
+        ans1El.addEventListener("click", correctans
+        );
+        ans2El.addEventListener("click", incorrectans); 
+        ans3El.addEventListener("click", incorrectans);
+        
+    };
+};
 
 function question3() {
+    ans1El.removeEventListener("click",correctans);
+    ans2El.removeEventListener("click",incorrectans);
+    ans3El.removeEventListener("click",incorrectans);
     if (secondsLeft > 0) {
         questionEl.textContent = "where should the js link be located?";
         ans1El.textContent = "head";
         ans2El.textContent = "footer";
         ans3El.textContent = "right before the closing body tag";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-        if (ans3El.eventlistener("click")) {
+        ans3El.addEventListener("click", function () {
             score++;
-            alert("Correct" + " your score is " + score);
-        }
-        else {
-            //NEED TO SUBTRACT 2 SECONDS
-            secondsLeft--;
-            setCounterText();
-            alert("incorrect. you loose 2 seconds")
-        }
+            alert("Correct" + " your score is " + score) + " out of 3";
+        });
+        ans1El.addEventListener("click", incorrectans); 
+        ans2El.addEventListener("click", incorrectans);
+        
         //END THE GAME
-    }
-}
+    };
+};
 //create if statements. If an answer is incorrect, the timer subtracts 10 seconds
 
 //whent the time is over the game is over and the score is displayed
