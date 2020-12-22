@@ -20,7 +20,7 @@ var secondsLeft = 20;
 
 //create an object with questions and answers
 var intandscore = [
-    { int: "", score: ""},
+    { int: "", score: "" },
     { q: "was this homework is even harder?", a: "yes" },
     { q: "What month are we in?", a: "December" }
 ];
@@ -49,9 +49,9 @@ function startTimer() {
             // need to save initials and score
             console.log(intEl);
             //JSON will need to be a variable, to reference. 
-            localStorage.setItem("initials",JSON.stringify([{int:intEl,score:score}]));
+            localStorage.setItem("initials", JSON.stringify([{ int: intEl, score: score }]));
             localStorage.getItem("initials");
-            userinitialsEl.textContent ="Initials: " + intEl;
+            userinitialsEl.textContent = "Initials: " + intEl;
             scoreEl.textContent = "Score " + score;
             secondsLeft = 20;
         }
@@ -64,69 +64,69 @@ function startTimer() {
 //function to handle incorrect guess
 function incorrectans() {
     secondsLeft--;
-            setCounterText();
-            alert("incorrect. you loose 2 seconds")
+    setCounterText();
+    alert("incorrect. you loose 2 seconds")
 }
 //create a function to go through the series of questions (for loop or series of functions calling eachother?)
 function question1() {
     if (secondsLeft > 0) {
-        questionEl.textContent = "was last weeks homework hard";
+        questionEl.textContent = "are HTML documents are written like newspapers";
         ans1El.textContent = "no";
         ans2El.textContent = "yes";
-        ans3El.textContent = "a little";
+        ans3El.textContent = "what is a newspaper?";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
 
-        ans2El.addEventListener("click",function() {
+        ans2El.addEventListener("click", function () {
             score++;
             alert("Correct" + " your score is " + score) + " out of 3";
         })
         ans1El.addEventListener("click", incorrectans);
-        ans3El.addEventListener("click",incorrectans);
-        // question2();
+        ans3El.addEventListener("click", incorrectans);
+        question2();
     }
 }
 
-// function question2() {
-//     if (secondsLeft > 0) {
-//         questionEl.textContent = "was this homework is even harder?";
-//         ans1El.textContent = "yes";
-//         ans2El.textContent = "no";
-//         ans3El.textContent = "a little";
-//         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-//         if (ans1El.eventlistener("click")) {
-//             score++;
-//             alert("Correct" + " your score is " + score);
-//         }
-//         else {
-//             //NEED TO SUBTRACT 2 SECONDS
-//             secondsLeft--;
-//             setCounterText();
-//             alert("incorrect. you loose 2 seconds")
-//         }
-//         question3();
-//     }
-// }
+function question2() {
+    if (secondsLeft > 0) {
+        questionEl.textContent = "where should the css style sheet link be located?";
+        ans1El.textContent = "in the head of the document";
+        ans2El.textContent = "in the body";
+        ans3El.textContent = "in the footer";
+        //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
+        if (ans1El.eventlistener("click")) {
+            score++;
+            alert("Correct" + " your score is " + score);
+        }
+        else {
+            //NEED TO SUBTRACT 2 SECONDS
+            secondsLeft--;
+            setCounterText();
+            alert("incorrect. you loose 2 seconds")
+        }
+        question3();
+    }
+}
 
-// function question3() {
-//     if (secondsLeft > 0) {
-//         questionEl.textContent = "What month are we in?";
-//         ans1El.textContent = "October";
-//         ans2El.textContent = "November";
-//         ans3El.textContent = "December";
-//         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-//         if (ans3El.eventlistener("click")) {
-//             score++;
-//             alert("Correct" + " your score is " + score);
-//         }
-//         else {
-//             //NEED TO SUBTRACT 2 SECONDS
-//             secondsLeft--;
-//             setCounterText();
-//             alert("incorrect. you loose 2 seconds")
-//         }
-//         //END THE GAME
-//     }
-// }
+function question3() {
+    if (secondsLeft > 0) {
+        questionEl.textContent = "where should the js link be located?";
+        ans1El.textContent = "head";
+        ans2El.textContent = "footer";
+        ans3El.textContent = "right before the closing body tag";
+        //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
+        if (ans3El.eventlistener("click")) {
+            score++;
+            alert("Correct" + " your score is " + score);
+        }
+        else {
+            //NEED TO SUBTRACT 2 SECONDS
+            secondsLeft--;
+            setCounterText();
+            alert("incorrect. you loose 2 seconds")
+        }
+        //END THE GAME
+    }
+}
 //create if statements. If an answer is incorrect, the timer subtracts 10 seconds
 
 //whent the time is over the game is over and the score is displayed
