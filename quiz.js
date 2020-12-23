@@ -9,15 +9,7 @@ var scoreEl = document.getElementById("user-score");
 
 var score = 0;
 var secondsLeft = 20;
-var nextQuestion = 2
-
-//testing buttons are connected to js
-// timerEl.textContent = "this is a test";
-// questionEl.textContent = "this is a test";
-// ans1El.textContent = "test";
-// ans2El.textContent = "test";
-// ans3El.textContent = "test";
-// startEl.textContent = "test";
+var nextQuestion = 2;
 
 //create an object with questions and answers
 // var intandscore = [
@@ -91,8 +83,8 @@ function question1() {
         ans2El.addEventListener("click", correctans);
         ans1El.addEventListener("click", incorrectans); 
         ans3El.addEventListener("click", incorrectans);
-    }
-}
+    };
+};
 
 function question2() {
     ans1El.removeEventListener("click",incorrectans);
@@ -104,11 +96,9 @@ function question2() {
         ans2El.textContent = "in the body";
         ans3El.textContent = "in the footer";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-        ans1El.addEventListener("click", correctans
-        );
+        ans1El.addEventListener("click", correctans);
         ans2El.addEventListener("click", incorrectans); 
-        ans3El.addEventListener("click", incorrectans);
-        
+        ans3El.addEventListener("click", incorrectans);     
     };
 };
 
@@ -122,23 +112,12 @@ function question3() {
         ans2El.textContent = "footer";
         ans3El.textContent = "right before the closing body tag";
         //NEED TO KNOW WHEN ANS2 BUTTOM HAS BEEN CLICKED HERE
-        ans3El.addEventListener("click", function () {
-            score++;
-            alert("Correct" + " your score is " + score) + " out of 3";
-        });
-        ans1El.addEventListener("click", incorrectans); 
-        ans2El.addEventListener("click", incorrectans);
-        
-        //END THE GAME
+        ans1El.addEventListener("click", incorrectans);
+        ans2El.addEventListener("click", incorrectans); 
+        ans3El.addEventListener("click", correctans);  
     };
 };
-//create if statements. If an answer is incorrect, the timer subtracts 10 seconds
 
-//whent the time is over the game is over and the score is displayed
-
-//dialogue box for user to input his initials
-
-//initials and score are saved and displayed
 
 //button to begin chain of events
 startEl.addEventListener("click", function (event) {
