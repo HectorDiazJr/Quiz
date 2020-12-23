@@ -15,7 +15,7 @@ a function to update the timer
 
 a function to start a timer. this function also resets the buttons, and asks for your initials to be saved. this leads to the function that handles the first question.
 
-each other question is also a separate function. these functions include "remove even listener functions 
+each other question is also a separate function. these functions include "remove event listener functions 
 
 there is also a function to handle what happens when the correct answer is selected
 

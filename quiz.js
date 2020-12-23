@@ -6,11 +6,18 @@ var ans3El = document.getElementById("ans3");
 var startEl = document.getElementById("start");
 var userinitialsEl = document.getElementById("user-initials");
 var scoreEl = document.getElementById("user-score");
+var highscoresEl = document.getElementById("highscores");
+
 
 var score = 0;
 var secondsLeft = 20;
 var nextQuestion = 2;
+var highScores = "";
 
+// var highScores {
+//     name: intEl.value,
+//     score: score.value,
+// }
 //create an object with questions and answers
 // var intandscore = [
 //     { int: "", score: "" },
@@ -46,6 +53,13 @@ function startTimer() {
             localStorage.getItem("initials");
             userinitialsEl.textContent = "Initials: " + intEl;
             scoreEl.textContent = "Score " + score;
+            localStorage.getItem("initials");
+            //displaying high scores
+            // highScores.push("intitials " + initials, "score " + score);
+            // highscoresEl.this.value = "";
+            //dispaly scores
+            highscoresEl.textContent = "Initials: " + intEl + " score " + score;
+            // HSuserscoreEl.textContent = "Score " + score;
             secondsLeft = 20;
         }
     }, 1000);
@@ -62,6 +76,9 @@ function correctans () {
     }
     else if (nextQuestion === 3) {
         question3();
+    }
+    else if (nextQuestion === 4) {
+        clearInterval(timerInterval);  
     }
 }
 //function to handle incorrect guess
@@ -115,6 +132,8 @@ function question3() {
         ans1El.addEventListener("click", incorrectans);
         ans2El.addEventListener("click", incorrectans); 
         ans3El.addEventListener("click", correctans);  
+        //unable to figure out how to clear the timer
+        clearInterval(timerInterval);
     };
 };
 
