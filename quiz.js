@@ -12,7 +12,12 @@ var highscoresEl = document.getElementById("highscores");
 var score = 0;
 var secondsLeft = 20;
 var nextQuestion = 2;
-var highScores = "";
+var highScores = [];
+var timerInterval;
+localStorage.getItem("initials");
+console.log(localStorage.getItem("initials"));
+highScores = JSON.parse(localStorage.getItem("initials"));
+console.log(highScores);
 
 // var highScores {
 //     name: intEl.value,
@@ -31,11 +36,11 @@ function setCounterText() {
 }
 //create a function, when the start button is clicked a countdown timer begin and first question function to be called
 function startTimer() {
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timerEl.textContent = secondsLeft + " seconds left";
         //WHY DOESNT IT SHOW 0
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             timerEl.textContent = "Game Over";
             ans1El.textContent = "Answer";
@@ -49,16 +54,25 @@ function startTimer() {
             // need to save initials and score
             console.log(intEl);
             //JSON will need to be a variable, to reference. 
-            localStorage.setItem("initials", JSON.stringify([{ int: intEl, score: score }]));
-            localStorage.getItem("initials");
+            var totalhighscores = "";
+            highScores.push("Initials: " + intEl + " score " + score);
+            console.log(highScores);
+            for (var i = 0; i < highScores.length; i++) {
+                totalhighscores += highScores[i] + "<br>";
+                console.log(highScores[i]);
+                console.log(totalhighscores);
+            };
+            localStorage.setItem("initials", JSON.stringify(highScores));
             userinitialsEl.textContent = "Initials: " + intEl;
             scoreEl.textContent = "Score " + score;
             localStorage.getItem("initials");
             //displaying high scores
-            // highScores.push("intitials " + initials, "score " + score);
+           
+            highscoresEl.innerHTML = totalhighscores;
+            console.log(totalhighscores);
             // highscoresEl.this.value = "";
             //dispaly scores
-            highscoresEl.textContent = "Initials: " + intEl + " score " + score;
+            // highscoresEl.append = "Initials: " + intEl + " score " + score;
             // HSuserscoreEl.textContent = "Score " + score;
             secondsLeft = 20;
         }
@@ -76,9 +90,13 @@ function correctans () {
     }
     else if (nextQuestion === 3) {
         question3();
+        nextQuestion++;
     }
     else if (nextQuestion === 4) {
-        clearInterval(timerInterval);  
+        // clearInterval(timerInterval); 
+        secondsLeft = 0;
+        setCounterText();
+        console.log("hi") 
     }
 }
 //function to handle incorrect guess
@@ -133,7 +151,7 @@ function question3() {
         ans2El.addEventListener("click", incorrectans); 
         ans3El.addEventListener("click", correctans);  
         //unable to figure out how to clear the timer
-        clearInterval(timerInterval);
+        
     };
 };
 
